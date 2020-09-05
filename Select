@@ -1,1 +1,30 @@
-Dummy text
+There are several different options that can be applied to a SELECT statement, and I will explain what they are, why you would use them, and how they can be combined. 
+ 
+* 
+Eg SELECT *  
+FROM customers; 
+ 
+This query returns all the columns for all the tables you are querying (which can be more than one table, which will be covered later). 
+The good thing is it returns them all. 
+The bad thing is it returns them all. 
+Depending on what you are doing, you might not need to see all of the columns, and that is both extra time for the query to run, as well as extra data that could be distracting you from what you need. 
+I work with a table that has 460 columns on it. Do I really need to know what is in all of them?? 
+ 
+COLUMN 
+Eg SELECT customername  
+FROM customers; 
+ 
+Rather than wanting all of the columns, you can specify one or more columns that you want to see, in the order you want them 
+ 
+DISTINCT () 
+Eg SELECT DISTINCT (customername)  
+FROM customers; 
+ 
+You might want to see all of the different names in the above example, but if more than one of them has the same name, do you need to see there are ten different John’s? 
+ 
+COUNT () 
+Eg SELECT COUNT (*) 
+FROM customers; 
+ 
+Rather than returning rows of data, COUNT just gives you the total number of rows, for the specific SELECT that you used. So if you want to know how many rows there are in a table, you can do SELECT  COUNT (*) and it will tell you. 
+You can also combine COUNT and DISTINCT, so if you wanted to know how many different names there were, rather than how many total rows there are, you could use them together with SELECT COUNT (DISTINCT customername), and it would tell you how many different names there are. 
