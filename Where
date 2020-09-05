@@ -1,1 +1,103 @@
-Dummy text
+WHERE is what allows you to limit what you want to bring back in your query, and gives you conditions that you do (or don’t) want to be met. 
+ 
+Eg SELECT * 
+FROM customers 
+WHERE customername = ‘JOHN’; 
+ 
+This example query would bring us back all the columns for every row where the customername is JOHN. 
+One important factor is that the column data is case sensitive, so it wouldn’t bring back anyone called John, only JOHN. But depending on how the data is stored within your database, it might all be forced into uppercase, or you know it only capitalises the first letter and so JOHN wouldn’t bring anyone back. 
+Another factor is that when looking for something involving alpha characters, they need to be in single quotes ‘ at the start and end of the word you are looking for. 
+ 
+With our WHERE condition, there are many different ways you can use them, and I will explain what they all do, and how they can eventually be combined. 
+ 
+= [Equals] 
+Eg 
+SELECT * 
+FROM customers 
+WHERE customername = ‘JOHN’; 
+ 
+As mentioned in the opening example, = is when we want to find something that exactly matches what we ask for, which could be a name, set of numbers, date, whatever you are trying to find. 
+ 
+> [Greater than] 
+Eg 
+SELECT * 
+FROM customers 
+WHERE customerid > 5; 
+ 
+With >, it returns all values which are greater than the requested amount, but does not include that amount. It can be useful if you looking for something which has to be higher than a fixed quantity, such as anyone over 18 where age is stored as a fixed value. 
+ 
+>= [Greater than or equal] 
+Eg 
+SELECT * 
+FROM customers 
+WHERE customerid >= 5; 
+ 
+With >= it is similar to the previous query, except it includes the chosen value, rather than only being greater than the chosen. So with this query, it would return someone with a customerid of 5, where > wouldn’t. 
+ 
+< [Less than] 
+Eg 
+SELECT * 
+FROM customers 
+WHERE customerid < 5; 
+ 
+With <, it returns all values which are less than the requested amount, otherwise behaving like > in that it doesn’t include the chosen value. 
+ 
+<= [Less than or equal] 
+Eg 
+SELECT * 
+FROM customers 
+WHERE customerid <= 5; 
+ 
+With <= it is including the chosen value, as well as those less than it. 
+ 
+<> or != [Not equal] 
+Eg 
+SELECT * 
+FROM customers 
+WHERE customername != ‘JOHN’; 
+ 
+<> and != do the same thing, depending on the exact SQL language, which is where the query returns all rows that are not equal to the chosen value, which in this case would bring back all rows from customers who aren’t called JOHN.  
+ 
+AND [Extra where conditions] 
+Eg 
+SELECT * 
+FROM customers 
+WHERE customername = ‘JOHN’ 
+AND customerid > 5; 
+ 
+If there is more condition you are wanting from your WHERE clause, instead of saying WHERE multiple times, you expand what it is doing by adding AND. In this example, we would only return rows where the customername is JOHN and also where their customerid was greater than 5. 
+There is no limit to the number of AND conditions that can be applied, but depending on how many you are having and what they are for, you may be able to make your query more efficient. 
+ 
+IN () [Multiple equals] 
+Eg 
+SELECT * 
+FROM customers 
+WHERE customername IN (‘JOHN’, ‘JANE’); 
+ 
+IN allows you to have multiple statements that you want equal, which in our above example would bring back all rows where the customername is JOHN or JANE. This is helpful where there are multiple options for the same column that you are wanting, where they are specific values. 
+ 
+ 
+NOT IN () [Multiple not equals] 
+Eg 
+SELECT * 
+FROM customers 
+WHERE customername NOT IN (‘JOHN’, ‘JANE’); 
+ 
+NOT IN inverts you IN statement, so rather than finding data where what you asked for is true, it instead excludes rows that have been requested. In this example, it would bring back all rows where the customername is not JOHN or JANE. 
+ 
+IS NULL [Column not populated] 
+Eg 
+SELECT * 
+FROM customers 
+WHERE customername IS NULL; 
+ 
+Depending on how the table is setup, one or more columns may not be populated on the table. When this happens, the value is treated as null, to show it is empty. 
+IS NULL allows you to search against this missing data, which in our example above would bring back all the rows there the customername hasn’t been populated, but at least one other column has been. 
+ 
+IS NOT NULL [Column populated] 
+Eg 
+SELECT * 
+FROM customers 
+WHERE customername IS NOT NULL; 
+ 
+IS NOT NULL means you will only get back rows where the column is populated, so if you don’t want data where that column is empty, this allows you to do that. In our above example, it would mean that the customername field must be populated. Be careful though, as even a single white space or full stop counts as being populated, even if it isn’t useful for you. 
