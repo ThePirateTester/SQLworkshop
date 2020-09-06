@@ -1,1 +1,27 @@
-Dummy text
+JOIN is when you need two or more tables to connect to one another. This is done by identifying the Primary and Foreign Keys.
+ 
+A Primary Key is a unique value in a column (or rarely, a combination of multiple columns), allowing the record to be precisely identified. The customerid column on the customers table is a Primary Key, as it is unique to each customer.
+ 
+A Foreign Key is where a Primary Key from another table is referenced in another table, allowing them to be connected. A Foreign Key can exist multiple times on a table. The customerid column on the orders table is a Foreign Key, as it allows the orders table to know what customer has placed an order, as well as having a customer place more than one order.
+ 
+Whilst there multiple types of JOIN, I will focus on only two:
+INNER JOIN
+LEFT JOIN
+ 
+INNER JOIN
+Eg
+SELECT *
+FROM SUPPLIERS
+JOIN PRODUCTS ON PRODUCTS.SUPPLIERID = SUPPLIERS.SUPPLIERID;
+ 
+INNER JOIN is often known and used without needing to write INNER, and just called JOIN.
+With INNER JOIN, you are wanting to see data that only connects the two. Picture the centre of a Venn diagram. In this example, it would only show suppliers that have products on the products table.
+ 
+LEFT JOIN
+Eg
+SELECT *
+FROM EMPLOYEES
+LEFT JOIN ORDERS ON EMPLOYEES.EMPLOYEEID = ORDERS.EMPLOYEEID;
+ 
+LEFT JOIN is where you want to see all records in the first table, and then if there are any linked records on the joined table, they will also be displayed. If there are no linked records for a row, the values from the joined table will return as null.
+This type of join is useful if you don’t know if there will be linked records in the LEFT JOIN table.
