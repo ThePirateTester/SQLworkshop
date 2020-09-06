@@ -11,8 +11,8 @@ LEFT JOIN
 INNER JOIN
 Eg
 SELECT *
-FROM SUPPLIERS
-JOIN PRODUCTS ON PRODUCTS.SUPPLIERID = SUPPLIERS.SUPPLIERID;
+FROM CUSTOMERS
+JOIN ORDERS on CUSTOMERS.CUSTOMERID = ORDERS.CUSTOMERID;
  
 INNER JOIN is often known and used without needing to write INNER, and just called JOIN.
 With INNER JOIN, you are wanting to see data that only connects the two. Picture the centre of a Venn diagram. In this example, it would only show suppliers that have products on the products table.
@@ -20,8 +20,8 @@ With INNER JOIN, you are wanting to see data that only connects the two. Picture
 LEFT JOIN
 Eg
 SELECT *
-FROM EMPLOYEES
-LEFT JOIN ORDERS ON EMPLOYEES.EMPLOYEEID = ORDERS.EMPLOYEEID;
+FROM CUSTOMERS
+LEFT JOIN ORDERS on CUSTOMERS.CUSTOMERID = ORDERS.CUSTOMERID;
  
 LEFT JOIN is where you want to see all records in the first table, and then if there are any linked records on the joined table, they will also be displayed. If there are no linked records for a row, the values from the joined table will return as null.
 This type of join is useful if you don’t know if there will be linked records in the LEFT JOIN table.
